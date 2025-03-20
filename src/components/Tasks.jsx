@@ -1,7 +1,18 @@
 import { ChevronRightIcon, SquareXIcon } from "lucide-react";
 import { DeleteIcon } from "lucide-react";
+import { Navigate, useNavigate } from "react-router-dom";
 
 function Tasks(props) {
+  const nav = useNavigate();
+
+  function onSeeDetails(task) {
+    const query = new URLSearchParams();
+    query.set("title", task.title);
+    query.set("description", task.description);
+
+    nav("/task?$(query.toString()}");
+  }
+
   return (
     <ul className="space-y-4 p-6 rounded-md shadow bg-slate-200">
       {props.tasks.map((task) => (
@@ -14,7 +25,10 @@ function Tasks(props) {
           >
             {task.title}
           </button>
-          <button className="bg-slate-400 text-left rounded-md text-white p-2">
+          <button
+            onClick={() => onSeeDetails(task)}
+            className="bg-slate-400 text-left rounded-md text-white p-2"
+          >
             <ChevronRightIcon />
           </button>
           <button
