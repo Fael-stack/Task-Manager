@@ -1,42 +1,37 @@
-import { ChevronRightIcon, SquareXIcon } from "lucide-react";
-import { DeleteIcon } from "lucide-react";
-import { Navigate, useNavigate } from "react-router-dom";
+import { CheckIcon, ChevronRightIcon, TrashIcon } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import Button from "./Button";
 
-function Tasks(props) {
-  const nav = useNavigate();
+function Tasks({ tasks, onTaskClick, onDeleteTaskClick }) {
+  const navigate = useNavigate();
 
-  function onSeeDetails(task) {
+  function onSeeDetailsClick(task) {
     const query = new URLSearchParams();
     query.set("title", task.title);
     query.set("description", task.description);
-
-    nav("/task?$(query.toString()}");
+    navigate(`/task?${query.toString()}`);
   }
 
   return (
-    <ul className="space-y-4 p-6 rounded-md shadow bg-slate-200">
-      {props.tasks.map((task) => (
+    <ul className="space-y-4 p-6 bg-slate-200 rounded-md shadow">
+      {tasks.map((task) => (
         <li key={task.id} className="flex gap-2">
           <button
-            onClick={() => props.onTaskClick(task.id)}
-            className={`bg-slate-400 w-full rounded-md text-white text-left p-2 ${
-              task.isCompleted ? "line-through" : ""
+            onClick={() => onTaskClick(task.id)}
+            className={`bg-slate-400 text-left w-full flex items-center gap-2 text-white p-2 rounded-md ${
+              task.isCompleted && "line-through"
             }`}
           >
+            {task.isCompleted && <CheckIcon />}
             {task.title}
           </button>
-          <button
-            onClick={() => onSeeDetails(task)}
-            className="bg-slate-400 text-left rounded-md text-white p-2"
-          >
+          <Button onClick={() => onSeeDetailsClick(task)}>
             <ChevronRightIcon />
-          </button>
-          <button
-            onClick={() => props.onDeleteTaskClick(task.id)}
-            className="bg-slate-400 text-left rounded-md text-white p-2"
-          >
-            <DeleteIcon />
-          </button>
+          </Button>
+
+          <Button onClick={() => onDeleteTaskClick(task.id)}>
+            <TrashIcon />
+          </Button>
         </li>
       ))}
     </ul>
