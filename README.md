@@ -20,28 +20,11 @@ Hospedagem: Vercel / Heroku (dependendo do ambiente)
 
 🔑 Recursos Principais
 
-✅ Cadastro e autenticação de usuários
 ✅ Criação, edição e exclusão de tarefas
 ✅ Organização por categorias e níveis de prioridade
 ✅ Interface responsiva e amigável
 ✅ Integração com notificações e lembretes
 
-🎯 Como Executar o Projeto
-
-1️⃣ Clone o Repositório
-
-git clone https://github.com/seu-usuario/projeto-tarefas.git
-
-2️⃣ Instale as Dependências
-
-cd projeto-tarefas
-npm install
-
-3️⃣ Execute a Aplicação
-
-npm start
-
-A aplicação estará disponível em http://localhost:3000/
 
 📩 Contato
 
